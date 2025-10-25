@@ -1,0 +1,53 @@
+body {
+  background-color: #f8f9fa;
+  font-family: "Inter", sans-serif;
+}
+
+.navbar-brand {
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.container h2 {
+  color: #0d6efd;
+  font-weight: 600;
+}
+
+.table {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.btn-primary {
+  background-color: #0d6efd;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #0b5ed7;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border: none;
+}
+
+.btn-danger:hover {
+  background-color: #bb2d3b;
+}
+
+footer {
+  margin-top: 3rem;
+  background: #212529;
+  color: #adb5bd;
+  font-size: 0.9rem;
+}
+
+footer a {
+  color: #adb5bd;
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: #fff;
+}

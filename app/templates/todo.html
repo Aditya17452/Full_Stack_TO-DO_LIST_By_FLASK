@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}To‑Do Dashboard{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="text-center mb-4">🗂 Your To‑Do List</h2>
+
+  <!-- Add Task -->
+ <form action="{{ url_for('task_bp.add_task') }}" method="POST" class="input-group mb-3 shadow-sm">
+    {{ csrf_token() }}
+    <input type="text" name="title" class="form-control" placeholder="Enter a new task..." required>
+    <button class="btn btn-primary" type="submit">Add</button>
+</form>
+
+
+  <!-- Clear All -->
+  {% if tasks %}
+  <form action="{{ url_for('task_bp.clear_tasks') }}" method="POST">
+    <button type="submit" class="btn btn-danger w-100 mb-3">Clear All Tasks</button>
+  </form>
+  {% endif %}
+
+  <!-- Task Table -->
+  {% if tasks %}
+  <table class="table table-hover table-striped align-middle shadow-sm">
+    <thead class="table-dark text-center">
+      <tr>
+        <th>#</th>
+        <th>Task</th>
+        <th>Status</th>
+        <th style="width: 20%">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for t in tasks %}
+      <tr>
+        <td class="text-center">{{ loop.index }}</td>
+        <td>{{ t.title }}</td>
+        <td class="text-center">
+          <span class="badge bg-{{ 'success' if t.status == 'Completed' else 'secondary' }}">{{ t.status }}</span>
+        </td>
+        <td class="text-center">
+         <form action="{{ url_for('task_bp.update_task', task_id=t.id) }}" method="POST" class="d-inline">
+ 
+          <form action="{{ url_for('task_bp.delete_task', task_id=t.id) }}" method="POST" class="d-inline">
+            <button class="btn btn-outline-danger btn-sm">Delete</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p class="text-center mt-4 text-muted">No tasks added yet. Start by creating one above!</p>
+  {% endif %}
+</div>
+{% endblock %}
